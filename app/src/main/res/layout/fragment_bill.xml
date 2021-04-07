@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.bill.BillFragment">
+
+        <ylc.love.wxj.mywife.widget.AppTitle
+            android:id="@+id/app_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:no_back_icon="true"
+            app:title="@string/daily_bill" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_min_size_1"
+            android:background="@color/line_color" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_45"
+            android:background="@color/white">
+
+            <ylc.love.wxj.mywife.widget.DrawableTextView
+                android:id="@+id/tv_look_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/widget_size_15"
+                app:drawableHeight="@dimen/widget_size_30"
+                app:drawableRight="@drawable/icon_arrow_down"
+                app:drawableWidth="@dimen/widget_size_30"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="bold"
+                android:textColor="@color/color_333"
+                tools:ignore="RtlSymmetry"
+                tools:text="2021-01" />
+
+            <TextView
+                android:id="@+id/tv_month_exp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/teal_700"
+                android:textSize="@dimen/font_size_18"
+                android:textStyle="bold"
+                tools:ignore="RelativeOverlap"
+                android:layout_marginEnd="@dimen/widget_size_15"
+                tools:text="-700" />
+
+            <TextView
+                android:id="@+id/tv_month_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/widget_size_30"
+                android:layout_toStartOf="@+id/tv_month_exp"
+                android:textColor="@color/color_red"
+                android:textSize="@dimen/font_size_18"
+                android:textStyle="bold"
+                tools:ignore="RelativeOverlap"
+                tools:text="+700" />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_bill"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</layout>

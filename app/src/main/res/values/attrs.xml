@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AppTitle">
+        <!--没有标题栏 只有错误页面-->
+        <attr name="no_title" format="boolean" />
+        <attr name="title" format="string" />
+        <attr name="title_color" format="color" />
+        <attr name="title_size" format="dimension" />
+        <attr name="title_background" format="color" />
+        <attr name="status_is_light_mode" format="boolean" />
+        <!--回退位置的图标，标题栏的最左边-->
+        <attr name="back_icon" format="reference" />
+        <attr name="no_back_icon" format="boolean" />
+        <attr name="right_one_icon" format="reference" />
+        <attr name="right_two_icon" format="reference" />
+        <attr name="right_one_text" format="string" />
+        <attr name="right_two_text" format="string" />
+        <attr name="right_one_text_color" format="color" />
+        <attr name="right_two_text_color" format="color" />
+        <attr name="right_one_text_pressed_color" format="color" />
+        <attr name="right_two_text_pressed_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="AppImageView">
+        <attr name="image_pressed_color" format="color" />
+        <!--宽高比值 比值为1 表示 高度等于宽度 默认没有改变控件高度，设置后才改变-->
+        <attr name="aspect_ratio" format="float" />
+        <!--圆角半径-->
+        <attr name="fillet_radius" format="dimension" />
+        <!-- 是否是圆形图片 默认是false 不是-->
+        <attr name="is_circle" format="boolean" />
+        <!--  排除某个方向 或者 几个方向 不显示圆角 不同方向使用 | 隔开（运算符）-->
+        <attr name="exclude_direction">
+            <flag name="left_top" value="0x0001" />
+            <flag name="right_top" value="0x0010" />
+            <flag name="left_bottom" value="0x0100" />
+            <flag name="right_bottom" value="0x1000" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="AppTextView">
+        <attr name="text_pressed_color" format="color" />
+        <attr name="text_selected_color" format="color" />
+        <attr name="bg_radius" format="dimension" />
+        <attr name="bg_left_top_radius" format="dimension" />
+        <attr name="bg_left_bottom_radius" format="dimension" />
+        <attr name="bg_right_top_radius" format="dimension" />
+        <attr name="bg_right_bottom_radius" format="dimension" />
+        <attr name="strokeColor" format="color" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="is_ripple_enable" format="boolean" />
+        <attr name="bg_color" format="color" />
+    </declare-styleable>
+    <!--    自定义的可以控制Drawable大小方向的TextView-->
+    <declare-styleable name="DrawableTextView">
+        <attr name="drawableLeft" format="reference" />
+        <attr name="drawableBottom" format="reference" />
+        <attr name="drawableRight" format="reference" />
+        <attr name="drawableTop" format="reference" />
+        <attr name="drawableWidth" format="dimension" />
+        <attr name="drawableHeight" format="dimension" />
+        <attr name="drawablePressedColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="AnimLogoView">
+        <attr name="logoName" format="string" />
+        <attr name="autoPlay" format="boolean" />
+        <attr name="offsetAnimDuration" format="integer" />
+        <attr name="gradientAnimDuration" format="integer" />
+        <attr name="gradientColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="verticalOffset" format="dimension" />
+        <attr name="textPadding" format="dimension" />
+        <attr name="showGradient" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CommonHor">
+        <attr name="hor_title" format="string" />
+        <attr name="hor_content" format="string" />
+        <attr name="hor_right_icon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BubbleView">
+        <attr name="bv_color" format="color" />
+        <attr name="bv_direction">
+            <enum name="top" value="0" />
+            <enum name="bottom" value="1" />
+            <enum name="right" value="2" />
+            <enum name="left" value="3" />
+        </attr>
+        <!--气泡三角形所在边的左右比（是top或bottom时）上下比（是left或right时）-->
+        <attr name="bv_ratio" format="float" />
+        <!--三角形气泡的宽-->
+        <attr name="bv_tr_width" format="dimension" />
+        <!--气泡view的圆角大小-->
+        <attr name="bv_radius" format="dimension" />
+        <attr name="bv_leftTopRadius" format="dimension" />
+        <attr name="bv_leftBottomRadius" format="dimension" />
+        <attr name="bv_rightTopRadius" format="dimension" />
+        <attr name="bv_rightBottomRadius" format="dimension" />
+    </declare-styleable>
+
+    <string-array name="BillTypeString">
+        <item>交通</item>
+        <item>三餐</item>
+        <item>日常</item>
+        <item>娱乐</item>
+        <item>金融</item>
+        <item>人情</item>
+        <item>医疗</item>
+        <item>零食</item>
+        <item>其他</item>
+    </string-array>
+</resources>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/widget_size_6"
+        app:cardElevation="@dimen/widget_size_5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/widget_size_15">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+
+                <ylc.love.wxj.mywife.widget.AppTextView
+                    android:id="@+id/tv_title"
+                    style="@style/date_list_item_tv_title"
+                    tools:text="第一次牵手的水立方的的" />
+
+                <ylc.love.wxj.mywife.widget.AppTextView
+                    android:id="@+id/tv_title_date"
+                    style="@style/date_list_item_tv_des"
+                    tools:ignore="RtlSymmetry"
+                    android:gravity="end"
+                    tools:text="2020-08-15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/widget_size_5"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    tools:ignore="UselessParent">
+
+                    <ylc.love.wxj.mywife.widget.AppTextView
+                        style="@style/date_list_item_tv_title"
+                        android:text="@string/need_time_colon" />
+
+                    <ylc.love.wxj.mywife.widget.AppTextView
+                        android:id="@+id/tv_need_time"
+                        style="@style/date_list_item_tv_des"
+                        android:textColor="@color/color_red"
+                        tools:ignore="RtlSymmetry"
+                        tools:text="288天" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/widget_size_5"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    tools:ignore="UselessParent">
+
+                    <ylc.love.wxj.mywife.widget.AppTextView
+                        style="@style/date_list_item_tv_title"
+                        android:text="@string/has_gone_colon" />
+
+                    <ylc.love.wxj.mywife.widget.AppTextView
+                        android:id="@+id/tv_gone"
+                        style="@style/date_list_item_tv_des"
+                        android:textColor="@color/teal_700"
+                        tools:ignore="RtlSymmetry"
+                        tools:text="30天" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/widget_size_5"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+
+                <ylc.love.wxj.mywife.widget.AppTextView
+                    style="@style/date_list_item_tv_title"
+                    android:text="@string/des_colon" />
+
+                <ylc.love.wxj.mywife.widget.AppTextView
+                    android:id="@+id/tv_des"
+                    style="@style/date_list_item_tv_des"
+                    android:textColor="@color/teal_700"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="现在基本上是个APP，里面都少不了CardView优美的身影，而UI基本上设计出来的都是带着各种颜色的CardView,美其名曰，搭配起来好看。好吧，咱也不敢说，咱也不敢问，搞呗" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

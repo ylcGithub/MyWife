@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ylc.love.wxj.mywife.widget.AppTitle
+            android:id="@+id/app_title"
+            app:no_back_icon="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/setting" />
+
+        <ylc.love.wxj.mywife.widget.CommonHor
+            android:id="@+id/hor_font"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hor_right_icon="@drawable/icon_arrow_down"
+            app:hor_content="空"
+            app:hor_title="自定义字体" />
+        <ylc.love.wxj.mywife.widget.CommonHor
+            android:id="@+id/hor_game"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hor_content="开始游戏"
+            app:hor_title="小游戏2048" />
+        <ylc.love.wxj.mywife.widget.CommonHor
+            android:id="@+id/hor_custom_view"
+            app:hor_title="自定义View"
+            app:hor_content="流程学习总结"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</layout>

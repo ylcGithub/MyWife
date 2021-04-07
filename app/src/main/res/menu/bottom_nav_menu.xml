@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/nav_date"
+        android:icon="@drawable/icon_date"
+        android:title="@string/date" />
+
+    <item
+        android:id="@+id/nav_bill"
+        android:icon="@drawable/icon_bill"
+        android:title="@string/bill"/>
+
+    <item
+        android:id="@+id/nav_mood"
+        android:icon="@drawable/icon_mood"
+        android:title="@string/mood"/>
+    <item
+        android:id="@+id/nav_aunt"
+        android:icon="@drawable/icon_aunt"
+        android:title="@string/aunt"/>
+
+    <item
+        android:id="@+id/nav_setting"
+        android:icon="@drawable/icon_setting"
+        android:title="@string/setting"/>
+</menu>

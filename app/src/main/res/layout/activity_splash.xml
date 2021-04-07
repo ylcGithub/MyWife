@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ylc.love.wxj.mywife.widget.AnimLogoView
+        android:id="@+id/anim_logo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:autoPlay="false"
+        app:gradientAnimDuration="2000"
+        app:gradientColor="@color/color_red"
+        app:logoName="cai ❤ jie"
+        app:offsetAnimDuration="1500"
+        app:showGradient="true"
+        app:textColor="@color/color_333"
+        app:textPadding="2dp"
+        app:textSize="30sp"
+        app:verticalOffset="50dp" />
+</FrameLayout>

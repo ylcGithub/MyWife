@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="card_flip_time_full">150</integer>
+    <integer name="image_show_time">100</integer>
+    <integer name="max_login_psw_length">9</integer>
+</resources>

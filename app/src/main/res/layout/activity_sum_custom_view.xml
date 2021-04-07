@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="click"
+            type="ylc.love.wxj.mywife.ui.customview.SumCustomViewActivity.ClickProxy" />
+        <variable
+            name="vm"
+            type="ylc.love.wxj.mywife.ui.customview.SumCustomViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ylc.love.wxj.mywife.widget.AppTitle
+            app:title="自定义控件"
+            titleBack="@{()->click.back()}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <ylc.love.wxj.mywife.ui.customview.TestPaint
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</layout>

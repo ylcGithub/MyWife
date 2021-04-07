@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_date">
+
+    <fragment
+        android:id="@+id/nav_date"
+        android:name="ylc.love.wxj.mywife.ui.date.DateFragment"
+        android:label="@string/date"
+        tools:layout="@layout/fragment_date"/>
+
+    <fragment
+        android:id="@+id/nav_bill"
+        android:name="ylc.love.wxj.mywife.ui.bill.BillFragment"
+        android:label="@string/bill"
+        tools:layout="@layout/fragment_bill"/>
+
+    <fragment
+        android:id="@+id/nav_mood"
+        android:name="ylc.love.wxj.mywife.ui.mood.MoodFragment"
+        android:label="@string/mood"
+        tools:layout="@layout/fragment_mood"/>
+    <fragment
+        android:id="@+id/nav_aunt"
+        android:name="ylc.love.wxj.mywife.ui.aunt.AuntFragment"
+        android:label="@string/aunt_date"
+        tools:layout="@layout/fragment_aunt" />
+
+    <fragment
+        android:id="@+id/nav_setting"
+        android:name="ylc.love.wxj.mywife.ui.setting.SettingFragment"
+        android:label="@string/setting"
+        tools:layout="@layout/fragment_setting" />
+</navigation>

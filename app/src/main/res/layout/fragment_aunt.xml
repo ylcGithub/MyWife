@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="click"
+            type="ylc.love.wxj.mywife.ui.aunt.AuntFragment.ClickProxy" />
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ylc.love.wxj.mywife.widget.AppTitle
+            android:id="@+id/app_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:no_back_icon="true"
+            app:right_one_icon="@drawable/icon_add"
+            titleRightOneTextClick="@{()->click.addAunt()}"
+            app:title="@string/aunt_cycle" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_aunt_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</layout>

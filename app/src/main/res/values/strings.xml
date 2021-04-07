@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">生活</string>
+    <string name="aunt">姨妈</string>
+    <string name="aunt_date">姨妈日期</string>
+    <string name="mood">心情</string>
+    <string name="date">日期</string>
+    <string name="bill">账单</string>
+    <string name="bill_type">账单类型</string>
+    <string name="important_date">重要日期</string>
+    <string name="daily_bill">日常账单</string>
+    <string name="essay_mood">随笔心情</string>
+    <string name="aunt_cycle">姨妈周期</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="create_event">创建事件</string>
+    <string name="date_title">日期标题</string>
+    <string name="select_date">选择日期</string>
+    <string name="input_des">输入描述</string>
+    <string name="save">保存</string>
+    <string name="create">新建</string>
+    <string name="setting">设置</string>
+
+    <string name="title">标题</string>
+    <string name="event_title">事件标题</string>
+    <string name="des_colon">描述:</string>
+    <string name="has_gone_colon">已过:</string>
+    <string name="need_time_colon">还差:</string>
+    <string name="verify_finger_print">验证指纹</string>
+    <string name="event_type">事件类型</string>
+    <string name="event_time">事件时间</string>
+    <string name="event_des">事件描述</string>
+    <string name="input_title">输入标题</string>
+    <string name="input_event_detail">输入事件详情</string>
+    <string name="it_is_empty">这里空空如也，什么也没有</string>
+    <string name="the_current_network_does_not_give_force_please_click_page_refresh">网络开小差啦，请点击重试!</string>
+    <string name="create_mood_diary">创建心情日记</string>
+    <string name="edit_mood">编辑当前心情</string>
+    <string name="restart">重新开始</string>
+</resources>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="ylc.love.wxj.mywife.ui.game.SmallGameViewModel" />
+
+        <variable
+            name="click"
+            type="ylc.love.wxj.mywife.ui.game.SmallGameActivity.ClickProxy" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ylc.love.wxj.mywife.widget.AppTitle
+            android:id="@+id/app_title"
+            titleBack="@{()->click.back()}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="2048"
+            titleRightOneTextClick="@{()->click.setting()}"
+            app:right_one_text="设置"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/widget_size_15"
+            android:orientation="horizontal">
+
+            <ylc.love.wxj.mywife.widget.AppTextView
+                style="@style/game_btn_style"
+                android:gravity="center"
+                android:text="@{vm.score}"
+                android:textColor="@color/teal_700" />
+
+            <ylc.love.wxj.mywife.widget.AppTextView
+                style="@style/game_btn_style"
+                android:gravity="center"
+                android:text="@{vm.bestScore}"
+                android:textColor="@color/teal_700" />
+        </LinearLayout>
+
+        <ylc.love.wxj.mywife.widget.AppTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_50"
+            android:gravity="center"
+            android:text="@{vm.maxScore}"
+            android:textColor="@color/teal_700"
+            android:textSize="@dimen/font_size_18"
+            tools:text="最大卡片：2048" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/widget_size_15"
+            android:orientation="horizontal">
+
+            <ylc.love.wxj.mywife.widget.AppButton
+                android:id="@+id/btn_restart"
+                style="@style/game_btn_style"
+                android:onClick="@{()->click.restart()}"
+                android:text="@string/restart" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ylc.love.wxj.mywife.ui.game.GameView
+                android:id="@+id/game"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true" />
+
+            <ylc.love.wxj.mywife.ui.game.GameViewAnim
+                android:id="@+id/anim_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

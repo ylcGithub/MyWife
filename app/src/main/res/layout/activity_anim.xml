@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/rl_anim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ylc.love.wxj.mywife.widget.AppTitle
+            android:id="@+id/app_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title_background="@color/teal_700"
+            app:title="动画" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="@dimen/widget_size_60"
+            android:layout_height="@dimen/widget_size_60"
+            android:layout_centerInParent="true"
+            android:background="@color/teal_700" />
+
+        <Button
+            android:id="@+id/start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/widget_size_20"
+            android:layout_marginEnd="@dimen/widget_size_20"
+            android:text="开始" />
+    </RelativeLayout>
+</layout>
