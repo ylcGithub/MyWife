@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ylc.love.wxj.mywife.base.BaseViewModel
 import ylc.love.wxj.mywife.model.AppDataBase
+import ylc.love.wxj.mywife.model.AuntBean
 import ylc.love.wxj.mywife.model.DateBean
+import ylc.love.wxj.mywife.utils.LogUtil
 
 /**
  *@author YLC-D
@@ -13,13 +15,15 @@ import ylc.love.wxj.mywife.model.DateBean
  */
 class AuntViewModel:BaseViewModel() {
 
-    private val _dataList = MutableLiveData<List<DateBean>>()
-    val dateList: LiveData<List<DateBean>> = _dataList
+    private val _dataList = MutableLiveData<List<AuntBean>>()
+    val dateList: LiveData<List<AuntBean>> = _dataList
 
 
     fun getAllAuntBeans() = runOnThread(work = {
         val dateBeanDao = AppDataBase.instance.auntBeanDao()
         val list = dateBeanDao.selectAll()
+        _dataList.postValue(list)
+        LogUtil.log(list.toString())
 //        val count= list.size
 //        repeat(count) {
 //            list[it].needDay = DateUtils.getNeed(list[it].date)

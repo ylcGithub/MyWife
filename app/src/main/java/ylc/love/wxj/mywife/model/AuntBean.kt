@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey
  */
 @Entity
 data class AuntBean(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id: Long,
     @ColumnInfo
     val startTime: Long,

@@ -6,6 +6,7 @@ import ylc.love.wxj.mywife.base.BaseOneLayoutAdapter
 import ylc.love.wxj.mywife.base.BaseViewHolder
 import ylc.love.wxj.mywife.databinding.AuntListItemBinding
 import ylc.love.wxj.mywife.databinding.FragmentAuntBinding
+import ylc.love.wxj.mywife.model.AppDataBase
 import ylc.love.wxj.mywife.model.AuntBean
 
 /**
@@ -40,7 +41,15 @@ class AuntFragment:BaseFragment<AuntViewModel,FragmentAuntBinding>() {
 
     inner class ClickProxy{
         fun addAunt(){
-
+            val auntBeanDao = AppDataBase.instance.auntBeanDao()
+            val count = if(mViewModel.dateList.value == null){
+                 1
+            }else{
+                mViewModel.dateList.value?.size
+            }
+            // count * 30 * 24*60*60*1000L
+            val currentTimeMillis = System.currentTimeMillis()
+            auntBeanDao.insert(AuntBean(currentTimeMillis,currentTimeMillis,currentTimeMillis+7*24*60*60*1000))
         }
     }
 
