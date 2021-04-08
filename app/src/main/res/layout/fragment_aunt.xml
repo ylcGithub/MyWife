@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             app:no_back_icon="true"
             app:right_one_icon="@drawable/icon_add"
-            titleRightOneTextClick="@{()->click.addAunt()}"
+            titleRightOneIconClick="@{()->click.addAunt()}"
             app:title="@string/aunt_cycle" />
 
         <androidx.recyclerview.widget.RecyclerView

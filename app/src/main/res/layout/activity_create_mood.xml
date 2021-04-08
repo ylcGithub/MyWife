@@ -75,23 +75,10 @@
             android:textSize="@dimen/font_size_18"
             tools:ignore="Autofill" />
 
-        <ylc.love.wxj.mywife.widget.AppTextView
-            android:id="@+id/tv_test"
-            android:layout_width="@dimen/widget_size_300"
-            android:layout_height="@dimen/widget_size_100"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/create_mood_diary"
-            android:textSize="@dimen/font_size_18"
-            app:bg_color="@color/white"
-            app:bg_left_top_radius="@dimen/widget_size_20"
-            app:bg_right_bottom_radius="@dimen/widget_size_20"
-            app:is_ripple_enable="true"
-            app:strokeColor="@color/color_333"
-            app:strokeWidth="@dimen/widget_size_3"
-            android:textColor="@color/teal_700"
-            app:text_pressed_color="@color/teal_200" />
-
+        <View
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
         <ylc.love.wxj.mywife.widget.AppButton
             android:id="@+id/btn_save"
             android:layout_width="match_parent"

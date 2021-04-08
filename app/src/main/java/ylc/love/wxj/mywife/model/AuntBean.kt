@@ -13,8 +13,13 @@ import androidx.room.PrimaryKey
 data class AuntBean(
     @PrimaryKey
     val id: Long,
+    //大姨妈开始时间
     @ColumnInfo
     val startTime: Long,
+    //大姨妈结束时间
     @ColumnInfo
     var endTime:Long,
+    //大姨妈持续时间
+    @ColumnInfo
+    var usedTime:Int
 )

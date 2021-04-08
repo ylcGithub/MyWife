@@ -35,4 +35,5 @@
     <string name="create_mood_diary">创建心情日记</string>
     <string name="edit_mood">编辑当前心情</string>
     <string name="restart">重新开始</string>
+    <string name="prediction">预测</string>
 </resources>

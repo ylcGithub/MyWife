@@ -28,9 +28,6 @@ class CreateMoodActivity : BaseMvvmActivity<CreateMoodViewModel, ActivityCreateM
                 "心情日记保存失败".toast()
             }
         })
-        tv_test.setOnClickListener {
-            "sdalfk".toast()
-        }
     }
 
     inner class ClickProxy {

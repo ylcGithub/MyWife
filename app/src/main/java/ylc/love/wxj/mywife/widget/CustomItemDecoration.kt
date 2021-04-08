@@ -66,6 +66,16 @@ class CustomItemDecoration(private val type: Type, @ColorInt val color: Int = Co
      */
     var mostBottom: Int = 0
 
+    //同时设置 左 上 右 下的 间隔值
+    var round:Int =0
+    set(value) {
+        field = value
+        mostLeft = value
+        mostTop = value
+        mostRight = value
+        mostBottom = value
+    }
+
     private val map: HashMap<Int, Rect> = HashMap(10)
     private var childCount: Int = 0
 

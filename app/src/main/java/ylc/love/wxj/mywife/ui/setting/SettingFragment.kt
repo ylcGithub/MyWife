@@ -70,5 +70,6 @@ class SettingFragment : BaseFragment<SettingViewModel, FragmentSettingBinding>()
         app_title.notifyTypeFace()
         hor_font.notifyTypeFace()
         hor_game.notifyTypeFace()
+        hor_custom_view.notifyTypeFace()
     }
 }
