@@ -13,16 +13,9 @@
     </data>
 
     <LinearLayout
+        android:id="@+id/fl"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <ylc.love.wxj.mywife.widget.AppTitle
-            app:title="自定义控件"
-            titleBack="@{()->click.back()}"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <ylc.love.wxj.mywife.ui.customview.TestPaint
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
     </LinearLayout>
 </layout>

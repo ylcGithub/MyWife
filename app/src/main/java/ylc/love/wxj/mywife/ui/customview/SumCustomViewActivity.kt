@@ -1,5 +1,6 @@
 package ylc.love.wxj.mywife.ui.customview
 
+import com.jaeger.library.StatusBarUtil
 import ylc.love.wxj.mywife.R
 import ylc.love.wxj.mywife.base.BaseMvvmActivity
 import ylc.love.wxj.mywife.databinding.ActivitySumCustomViewBinding
@@ -19,6 +20,7 @@ class SumCustomViewActivity : BaseMvvmActivity<SumCustomViewModel, ActivitySumCu
     override fun initData() {
         mBinding.click = ClickProxy()
         mBinding.vm = mViewModel
+        StatusBarUtil.setTranslucentForImageView(this,0,null)
     }
 
     inner class ClickProxy {

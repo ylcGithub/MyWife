@@ -21,7 +21,7 @@ class TestPaint @JvmOverloads constructor(
     //初始化一个抗锯齿的画笔
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var bmp1: Bitmap = BitmapUtil.getBitmap(context,R.drawable.vector_drawable_diy_failure,3f)
-    private var bmp2: Bitmap = BitmapFactory.decodeResource(resources,R.drawable.jing_tian)
+    private var bmp2: Bitmap = BitmapFactory.decodeResource(resources,R.drawable.icon_bill)
     //图片灰度化，RGB取平均值
     private val array = floatArrayOf(
         0.33f,0.33f,0.33f,0f,0f,// 红色值

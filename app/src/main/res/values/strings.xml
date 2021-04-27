@@ -27,6 +27,7 @@
     <string name="verify_finger_print">验证指纹</string>
     <string name="event_type">事件类型</string>
     <string name="event_time">事件时间</string>
+    <string name="time_interval">时间范围</string>
     <string name="event_des">事件描述</string>
     <string name="input_title">输入标题</string>
     <string name="input_event_detail">输入事件详情</string>

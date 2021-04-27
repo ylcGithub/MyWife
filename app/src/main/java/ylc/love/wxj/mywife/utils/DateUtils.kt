@@ -3,6 +3,8 @@ package ylc.love.wxj.mywife.utils
 import android.annotation.SuppressLint
 
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalTime
 import java.util.*
 
 /**
@@ -96,6 +98,24 @@ object DateUtils {
         var date: Date? = Date()
         try {
             val time = "${getCurDateStr("yyyy")}-${getCurDateStr("MM")}"
+            date = dateFormat.parse(time)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+        return date?.time ?: 0
+    }
+
+    /**
+     * 获取当月开始的时间戳
+     */
+    @SuppressLint("SimpleDateFormat")
+    @JvmStatic
+    fun getCurrMonthEndTime(): Long {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        var date: Date? = Date()
+        try {
+            val time = "${getCurDateStr("yyyy")}-${getCurDateStr("MM")}-${getDaysOfMonth(curYear,
+                curMonth)}"
             date = dateFormat.parse(time)
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
