@@ -45,6 +45,9 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
             })
         }
         mViewModel.currTime.value = DateInterval(DateUtils.getCurrMonthStartTime(),DateUtils.getCurrMonthEndTime())
+        mViewModel.dateList.observe(this,{
+            mAdapter.updateList(it,true)
+        })
     }
 
     private fun showDateSelectDialog(v:View){

@@ -5,15 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import ylc.love.wxj.mywife.base.BaseViewModel
 import ylc.love.wxj.mywife.model.AppDataBase
 import ylc.love.wxj.mywife.model.BillBean
-import ylc.love.wxj.mywife.model.DateBean
 import ylc.love.wxj.mywife.model.DateInterval
 import ylc.love.wxj.mywife.utils.DateUtils
 import ylc.love.wxj.mywife.utils.LogUtil
 
 class BillViewModel : BaseViewModel() {
 
-    private val _dataList = MutableLiveData<List<DateBean>>()
-    val dateList: LiveData<List<DateBean>> = _dataList
+    private val _dataList = MutableLiveData<List<BillBean>>()
+    val dateList: LiveData<List<BillBean>> = _dataList
     val currTime:MutableLiveData<DateInterval> = MutableLiveData()
 
     fun queryBeans() = runOnThread(work = {
@@ -21,6 +20,7 @@ class BillViewModel : BaseViewModel() {
             val billDao = AppDataBase.instance.billBeanDao()
             val list = billDao.selectByDate(it.startTime,it.endTime)
             LogUtil.log(list.toString())
+            setValueOnMain(_dataList,list)
         }
     },catch = { e->
         LogUtil.log(e.toString())
