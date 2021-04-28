@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <ylc.love.wxj.mywife.widget.AppTextView
+        android:id="@+id/tv_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/widget_size_8"
+        android:paddingTop="@dimen/widget_size_3"
+        android:paddingEnd="@dimen/widget_size_8"
+        android:paddingBottom="@dimen/widget_size_3"
+        app:bg_color="@color/transparent"
+        android:textColor="@color/teal_700"
+        android:textSize="@dimen/font_size_16"
+        app:bg_radius="@dimen/widget_size_10"
+        app:strokeColor="@color/teal_700"
+        app:strokeWidth="@dimen/widget_size_1" />
+</layout>

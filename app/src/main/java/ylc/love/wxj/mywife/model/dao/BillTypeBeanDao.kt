@@ -15,5 +15,5 @@ interface BillTypeBeanDao : BaseDao<BillTypeBean> {
     fun selectById(id: Long): BillTypeBean?
 
     @Query("select * from BillTypeBean")
-    fun selectAll(): List<BillTypeBean>
+    fun selectAll(): MutableList<BillTypeBean>
 }

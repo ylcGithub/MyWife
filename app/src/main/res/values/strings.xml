@@ -37,4 +37,7 @@
     <string name="edit_mood">编辑当前心情</string>
     <string name="restart">重新开始</string>
     <string name="prediction">预测</string>
+    <string name="filter">筛选</string>
+    <string name="put_away">收起</string>
+    <string name="interval_symbol">\u0020至\u0020</string>
 </resources>

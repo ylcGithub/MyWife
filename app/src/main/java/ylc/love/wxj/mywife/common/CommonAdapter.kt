@@ -1,9 +1,13 @@
 package ylc.love.wxj.mywife.common
 
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import androidx.databinding.BindingAdapter
+import ylc.love.wxj.mywife.model.DateInterval
+import ylc.love.wxj.mywife.utils.DateUtils
+import ylc.love.wxj.mywife.widget.AppTextView
 import ylc.love.wxj.mywife.widget.AppTitle
 
 /**
@@ -43,4 +47,14 @@ fun addTextChangeListener(et: EditText, watcher: TextWatcher?) {
     watcher?.let {
         et.addTextChangedListener(it)
     }
+}
+
+@BindingAdapter("showTime")
+fun showTime(tv:AppTextView,time:Long){
+    tv.text = DateUtils.getDateStr(time,"yyyy-MM-dd HH:mm")
+}
+
+@BindingAdapter("showWeek")
+fun showWeek(tv:AppTextView,time:Long){
+    tv.text = DateUtils.getDateWeek(time)
 }

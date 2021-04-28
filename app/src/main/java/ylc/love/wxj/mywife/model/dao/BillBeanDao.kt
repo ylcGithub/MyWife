@@ -18,5 +18,5 @@ interface BillBeanDao:BaseDao<BillBean> {
 
     //查询某个时间段内的数据
     @Query("select * from BillBean where typeId = :typeId and date BETWEEN :startDate and :endDate ORDER BY date DESC")
-    fun selectByDateAndType(startDate:Long?,endDate:Long?,typeId:Int): List<BillBean>
+    fun selectByDateAndType(startDate:Long,endDate:Long,typeId:Int): List<BillBean>
 }

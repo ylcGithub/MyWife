@@ -4,20 +4,19 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_bill.*
 import ylc.love.wxj.mywife.R
 import ylc.love.wxj.mywife.base.BaseFragment
 import ylc.love.wxj.mywife.base.BaseOneLayoutAdapter
 import ylc.love.wxj.mywife.base.BaseViewHolder
 import ylc.love.wxj.mywife.databinding.BillListItemBinding
+import ylc.love.wxj.mywife.databinding.BillTypeItemBinding
 import ylc.love.wxj.mywife.databinding.FragmentBillBinding
-import ylc.love.wxj.mywife.model.AppDataBase
-import ylc.love.wxj.mywife.model.BillBean
-import ylc.love.wxj.mywife.model.DateBean
-import ylc.love.wxj.mywife.model.DateInterval
+import ylc.love.wxj.mywife.model.*
 import ylc.love.wxj.mywife.utils.DateUtils
-import ylc.love.wxj.mywife.utils.LogUtil
 import ylc.love.wxj.mywife.utils.ResUtil
+import ylc.love.wxj.mywife.widget.AppTextView
 import ylc.love.wxj.mywife.widget.CustomItemDecoration
 import java.util.*
 
@@ -27,13 +26,14 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
     override fun getViewModel(): BillViewModel = getViewModelProvider(this).get(BillViewModel::class.java)
 
     override fun initData() {
+        mBinding.click = ClickProxy()
         rcv_bill.adapter = mAdapter
         rcv_bill.layoutManager = LinearLayoutManager(mContext)
         add_new_bill.setOnClickListener {
             mViewModel.addBean()
         }
         mViewModel.currTime.observe(this,{
-            mViewModel.queryBeans()
+            mViewModel.queryBills()
         })
         if(rcv_bill.itemDecorationCount == 0){
             rcv_bill.addItemDecoration(CustomItemDecoration(CustomItemDecoration.Type.VER).apply {
@@ -48,6 +48,18 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
         mViewModel.dateList.observe(this,{
             mAdapter.updateList(it,true)
         })
+        mViewModel.typeList.observe(this,{
+            typeAdapter.updateList(it,true)
+        })
+        rcv_type.adapter = typeAdapter
+        rcv_type.layoutManager = LinearLayoutManager(mContext).also {it.orientation = RecyclerView.HORIZONTAL }
+        if(rcv_type.itemDecorationCount == 0){
+            rcv_type.addItemDecoration(CustomItemDecoration(CustomItemDecoration.Type.HOR).apply {
+                space = ResUtil.getDimen(mContext, R.dimen.widget_size_10).toInt()
+                mostLeft = space
+                mostRight = space
+            })
+        }
     }
 
     private fun showDateSelectDialog(v:View){
@@ -64,6 +76,25 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
             calender.get(Calendar.DAY_OF_MONTH)
         )
         dialog.show()
+    }
+
+    inner class ClickProxy{
+        fun unfoldPutAway(v:View){
+           v as AppTextView
+            if(v.isSelected){
+                //收起
+                mBinding.llFilter.visibility = View.GONE
+                v.text = getString(R.string.filter)
+            }else{
+                //展开
+                mBinding.llFilter.visibility = View.VISIBLE
+                v.text = getString(R.string.put_away)
+                if(mViewModel.typeList.value == null){
+                    mViewModel.queryBillTypes()
+                }
+            }
+            v.isSelected = !v.isSelected
+        }
     }
 
 
@@ -83,8 +114,20 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
             item.des?.let {
                 bind.tvDes.text = it
             }
-
         }
+    }
 
+    private val typeAdapter = object : BaseOneLayoutAdapter<BillTypeBean,BillTypeItemBinding>(R.layout.bill_type_item){
+        override fun itemIsSame(oldItem: BillTypeBean, newItem: BillTypeBean): Boolean = oldItem == newItem
+        override fun onBindItem(
+            bind: BillTypeItemBinding,
+            item: BillTypeBean,
+            holder: BaseViewHolder
+        ) {
+            bind.tvType.text = item.type
+            bind.tvType.setOnClickListener {
+                mViewModel.currType.value = item.id
+            }
+        }
     }
 }

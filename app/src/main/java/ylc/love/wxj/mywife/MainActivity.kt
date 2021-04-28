@@ -31,7 +31,7 @@ class MainActivity : BaseActivity() {
         if (list.isEmpty()) {
             val stringArray = resources.getStringArray(R.array.BillTypeString)
             repeat(stringArray.count()) {
-                val ben = BillTypeBean(it + 1, stringArray[it])
+                val ben = BillTypeBean( stringArray[it],it + 1)
                 billTypeBeanDao.insert(ben)
             }
         }
