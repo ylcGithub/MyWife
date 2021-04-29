@@ -7,77 +7,119 @@
 
     </data>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginStart="@dimen/widget_size_30"
+        android:layout_marginEnd="@dimen/widget_size_30"
+        android:background="@color/white"
         android:padding="@dimen/widget_size_15">
 
-        <LinearLayout
+        <ylc.love.wxj.mywife.widget.AppTextView
+            android:id="@+id/tv_time_key"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:text="@string/select_date"
+            android:textColor="@color/teal_700"
+            android:textSize="@dimen/font_size_18"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ylc.love.wxj.mywife.widget.AppTextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/widget_size_10"
+            android:textColor="@color/color_333"
+            android:textSize="@dimen/font_size_18"
+            app:layout_constraintStart_toEndOf="@+id/tv_time_key"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="UselessParent">
+            tools:text="2021-02-26" />
 
-            <ylc.love.wxj.mywife.widget.AppTextView
-                android:id="@+id/tv_time_key"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time_interval"
-                android:textColor="@color/teal_700"
-                android:textSize="@dimen/font_size_16" />
-
-            <ylc.love.wxj.mywife.widget.AppTextView
-                android:id="@+id/tv_start_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/widget_size_15"
-                android:textColor="@color/color_333"
-                android:textSize="@dimen/font_size_16"
-                tools:text="2021-02-01" />
-
-            <ylc.love.wxj.mywife.widget.AppTextView
-                android:id="@+id/tv_gap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/color_333"
-                android:textSize="@dimen/font_size_16"
-                tools:text=" - " />
-
-            <ylc.love.wxj.mywife.widget.AppTextView
-                android:id="@+id/tv_end_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/color_333"
-                android:textSize="@dimen/font_size_16"
-                tools:text="2021-02-01" />
-        </LinearLayout>
-
-        <LinearLayout
+        <ylc.love.wxj.mywife.widget.AppTextView
+            android:id="@+id/tv_type_key"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/widget_size_15"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_marginTop="@dimen/widget_size_10"
+            android:text="@string/bill_type"
+            android:textColor="@color/teal_700"
+            android:textSize="@dimen/font_size_18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_time_key" />
 
-            <ylc.love.wxj.mywife.widget.AppTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/widget_size_15"
-                android:text="@string/bill_type" />
+        <ylc.love.wxj.mywife.widget.WordWrapView
+            android:id="@+id/word_wrap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:marginVertical="@dimen/widget_size_10"
+            app:marginHor="@dimen/widget_size_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_type_key" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_bill"
+        <ylc.love.wxj.mywife.widget.AppTextView
+            android:id="@+id/tv_spend_key"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/widget_size_15" />
-    </LinearLayout>
+            android:text="@string/bill_spend"
+            android:textColor="@color/teal_700"
+            android:textSize="@dimen/font_size_18"
+            app:layout_constraintBottom_toBottomOf="@+id/et_spend"
+            app:layout_constraintEnd_toStartOf="@+id/et_spend"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/et_spend" />
+
+        <ylc.love.wxj.mywife.widget.AppEditText
+            android:id="@+id/et_spend"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/widget_size_45"
+            android:background="@null"
+            android:inputType="numberDecimal"
+            android:maxLength="10"
+            android:textColor="@color/teal_700"
+            android:textSize="@dimen/font_size_18"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/widget_size_10"
+            app:layout_constraintStart_toEndOf="@+id/tv_spend_key"
+            app:layout_constraintTop_toBottomOf="@+id/word_wrap" />
+
+
+        <ylc.love.wxj.mywife.widget.AppTextView
+            android:id="@+id/tv_des_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/input_des"
+            android:textColor="@color/teal_700"
+            android:textSize="@dimen/font_size_18"
+            app:layout_constraintBottom_toBottomOf="@+id/et_des"
+            app:layout_constraintEnd_toStartOf="@+id/et_des"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/et_des" />
+
+        <ylc.love.wxj.mywife.widget.AppEditText
+            android:id="@+id/et_des"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/widget_size_10"
+            android:layout_height="@dimen/widget_size_45"
+            android:background="@null"
+            android:maxLength="10"
+            android:textColor="@color/teal_700"
+            android:textSize="@dimen/font_size_18"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/widget_size_10"
+            app:layout_constraintStart_toEndOf="@+id/tv_des_key"
+            app:layout_constraintTop_toBottomOf="@+id/et_spend" />
+
+        <ylc.love.wxj.mywife.widget.AppButton
+            android:id="@+id/btn_save"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_20"
+            android:layout_width="match_parent"
+            android:shadowRadius="50"
+            android:layout_height="@dimen/widget_size_45"
+            android:layout_marginStart="@dimen/widget_size_15"
+            android:layout_marginTop="@dimen/widget_size_50"
+            android:layout_marginEnd="@dimen/widget_size_15"
+            app:layout_constraintTop_toBottomOf="@+id/et_des" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -100,6 +100,13 @@
         <attr name="bv_rightTopRadius" format="dimension" />
         <attr name="bv_rightBottomRadius" format="dimension" />
     </declare-styleable>
+    <!--流式布局的属性-->
+    <declare-styleable name="WordWrapView">
+        <attr name="paddingHor" format="dimension" />
+        <attr name="paddingVertical" format="dimension" />
+        <attr name="marginHor" format="dimension" />
+        <attr name="marginVertical" format="dimension" />
+    </declare-styleable>
 
     <string-array name="BillTypeString">
         <item>交通</item>

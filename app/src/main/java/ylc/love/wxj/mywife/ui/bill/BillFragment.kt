@@ -16,6 +16,7 @@ import ylc.love.wxj.mywife.databinding.FragmentBillBinding
 import ylc.love.wxj.mywife.model.*
 import ylc.love.wxj.mywife.utils.DateUtils
 import ylc.love.wxj.mywife.utils.ResUtil
+import ylc.love.wxj.mywife.widget.AddBillPopWindow
 import ylc.love.wxj.mywife.widget.AppTextView
 import ylc.love.wxj.mywife.widget.CustomItemDecoration
 import java.util.*
@@ -29,9 +30,6 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
         mBinding.click = ClickProxy()
         rcv_bill.adapter = mAdapter
         rcv_bill.layoutManager = LinearLayoutManager(mContext)
-        add_new_bill.setOnClickListener {
-            mViewModel.addBean()
-        }
         mViewModel.currTime.observe(this,{
             mViewModel.queryBills()
         })
@@ -60,22 +58,8 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
                 mostRight = space
             })
         }
-    }
 
-    private fun showDateSelectDialog(v:View){
-        val calender = Calendar.getInstance()
-        val dialog = DatePickerDialog(
-            mContext,
-            { _, year, month, dayOfMonth ->
-                val time = "$year-${month + 1}-$dayOfMonth"
-//                tv_event_time.text = time
-//                mViewModel.currTime.postValue(DateUtils.getDateFromStr(time, "yyyy-MM"))
-            },
-            calender.get(Calendar.YEAR),
-            calender.get(Calendar.MONTH),
-            calender.get(Calendar.DAY_OF_MONTH)
-        )
-        dialog.show()
+        mViewModel.queryBillTypes()
     }
 
     inner class ClickProxy{
@@ -89,11 +73,19 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
                 //展开
                 mBinding.llFilter.visibility = View.VISIBLE
                 v.text = getString(R.string.put_away)
-                if(mViewModel.typeList.value == null){
-                    mViewModel.queryBillTypes()
-                }
             }
             v.isSelected = !v.isSelected
+        }
+
+        fun addNewBill(){
+            AddBillPopWindow(mContext).also {
+                it.listener = object :AddBillPopWindow.SaveListener{
+                    override fun onClick(type: BillBean) {
+                        mViewModel.addBean()
+                    }
+                }
+                it.setTypeList(mViewModel.typeList.value!!)
+            }.showPopupWindow()
         }
     }
 
@@ -108,7 +100,7 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
             item: BillBean,
             holder: BaseViewHolder) {
             bind.tvType.text = item.type
-            bind.tvTime.text = DateUtils.getDateStr(item.date,"yyyy-MM-dd HH:mm")
+            bind.tvTime.text = DateUtils.getDateStr(item.date,"yyyy-MM-dd")
             bind.tvWeek.text = DateUtils.getDateWeek(item.date)
             bind.tvSpend.text = "-${item.spend}"
             item.des?.let {

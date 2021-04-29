@@ -117,6 +117,7 @@
             android:foregroundGravity="center"
             app:borderWidth="@dimen/widget_size_1"
             app:fabSize="auto"
+            android:onClick="@{()->click.addNewBill()}"
             android:layout_alignParentBottom="true"
             app:maxImageSize="@dimen/widget_size_25"
             app:srcCompat="@drawable/icon_edit"

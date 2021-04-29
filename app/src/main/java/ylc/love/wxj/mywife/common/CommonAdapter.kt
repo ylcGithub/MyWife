@@ -51,7 +51,7 @@ fun addTextChangeListener(et: EditText, watcher: TextWatcher?) {
 
 @BindingAdapter("showTime")
 fun showTime(tv:AppTextView,time:Long){
-    tv.text = DateUtils.getDateStr(time,"yyyy-MM-dd HH:mm")
+    tv.text = DateUtils.getDateStr(time,"yyyy-MM-dd")
 }
 
 @BindingAdapter("showWeek")

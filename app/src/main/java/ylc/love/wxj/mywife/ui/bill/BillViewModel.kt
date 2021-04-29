@@ -17,8 +17,8 @@ class BillViewModel : BaseViewModel() {
     private val _dataList = MutableLiveData<List<BillBean>>()
     val dateList: LiveData<List<BillBean>> = _dataList
 
-    private val _typeList = MutableLiveData<List<BillTypeBean>>()
-    val typeList: LiveData<List<BillTypeBean>> = _typeList
+    private val _typeList = MutableLiveData<MutableList<BillTypeBean>>()
+    val typeList: LiveData<MutableList<BillTypeBean>> = _typeList
 
     val currTime:MutableLiveData<DateInterval> = MutableLiveData(DateInterval(0L,0L))
     val currType:MutableLiveData<Int> = MutableLiveData(0)
@@ -38,7 +38,7 @@ class BillViewModel : BaseViewModel() {
         val typeDao = AppDataBase.instance.billTypeBeanDao()
         val list = typeDao.selectAll()
         list.add(0, BillTypeBean("全部",0))
-        setValueOnMain(_typeList, list.toList())
+        setValueOnMain(_typeList, list)
     },catch = { e->
         e.printStackTrace()
         LogUtil.log(e.toString())

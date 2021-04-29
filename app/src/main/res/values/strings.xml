@@ -40,4 +40,5 @@
     <string name="filter">筛选</string>
     <string name="put_away">收起</string>
     <string name="interval_symbol">\u0020至\u0020</string>
+    <string name="bill_spend">账单花费</string>
 </resources>
