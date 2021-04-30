@@ -10,20 +10,31 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/widget_size_30"
-        android:layout_marginEnd="@dimen/widget_size_30"
-        android:background="@color/white"
-        android:padding="@dimen/widget_size_15">
+        android:layout_marginStart="@dimen/widget_size_40"
+        android:layout_marginEnd="@dimen/widget_size_40"
+        android:paddingBottom="@dimen/widget_size_15"
+        android:background="@color/white">
+
+        <ylc.love.wxj.mywife.widget.AppImageView
+            android:id="@+id/iv_cancel"
+            android:layout_width="@dimen/widget_size_45"
+            android:layout_height="@dimen/widget_size_45"
+            android:padding="@dimen/widget_size_5"
+            app:image_pressed_color="@color/color_999"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icon_clear" />
 
         <ylc.love.wxj.mywife.widget.AppTextView
             android:id="@+id/tv_time_key"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/widget_size_15"
             android:text="@string/select_date"
             android:textColor="@color/teal_700"
             android:textSize="@dimen/font_size_18"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_cancel" />
 
         <ylc.love.wxj.mywife.widget.AppTextView
             android:id="@+id/tv_time"
@@ -33,7 +44,7 @@
             android:textColor="@color/color_333"
             android:textSize="@dimen/font_size_18"
             app:layout_constraintStart_toEndOf="@+id/tv_time_key"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_time_key"
             tools:text="2021-02-26" />
 
         <ylc.love.wxj.mywife.widget.AppTextView
@@ -41,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/widget_size_10"
+            android:paddingStart="@dimen/widget_size_15"
             android:text="@string/bill_type"
             android:textColor="@color/teal_700"
             android:textSize="@dimen/font_size_18"
@@ -51,15 +63,20 @@
             android:id="@+id/word_wrap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:marginVertical="@dimen/widget_size_10"
-            app:marginHor="@dimen/widget_size_10"
+            android:paddingVertical="@dimen/widget_size_3"
+            android:paddingStart="@dimen/widget_size_5"
+            android:paddingEnd="@dimen/widget_size_5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_type_key" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_type_key"
+            app:marginHor="@dimen/widget_size_10"
+            app:marginVertical="@dimen/widget_size_10"
+            app:paddingHor="@dimen/widget_size_8" />
 
         <ylc.love.wxj.mywife.widget.AppTextView
             android:id="@+id/tv_spend_key"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/widget_size_15"
             android:text="@string/bill_spend"
             android:textColor="@color/teal_700"
             android:textSize="@dimen/font_size_18"
@@ -72,13 +89,16 @@
             android:id="@+id/et_spend"
             android:layout_width="0dp"
             android:layout_height="@dimen/widget_size_45"
+            android:layout_marginStart="@dimen/widget_size_10"
             android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/bill_spend_hint"
             android:inputType="numberDecimal"
             android:maxLength="10"
             android:textColor="@color/teal_700"
+            android:textColorHint="@color/color_999"
             android:textSize="@dimen/font_size_18"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="@dimen/widget_size_10"
             app:layout_constraintStart_toEndOf="@+id/tv_spend_key"
             app:layout_constraintTop_toBottomOf="@+id/word_wrap" />
 
@@ -87,6 +107,7 @@
             android:id="@+id/tv_des_key"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/widget_size_15"
             android:text="@string/input_des"
             android:textColor="@color/teal_700"
             android:textSize="@dimen/font_size_18"
@@ -98,28 +119,31 @@
         <ylc.love.wxj.mywife.widget.AppEditText
             android:id="@+id/et_des"
             android:layout_width="0dp"
-            android:layout_marginTop="@dimen/widget_size_10"
             android:layout_height="@dimen/widget_size_45"
+            android:layout_marginStart="@dimen/widget_size_10"
+            android:layout_marginTop="@dimen/widget_size_10"
             android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/bill_des_hint"
             android:maxLength="10"
             android:textColor="@color/teal_700"
+            android:textColorHint="@color/color_999"
             android:textSize="@dimen/font_size_18"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="@dimen/widget_size_10"
             app:layout_constraintStart_toEndOf="@+id/tv_des_key"
             app:layout_constraintTop_toBottomOf="@+id/et_spend" />
 
         <ylc.love.wxj.mywife.widget.AppButton
             android:id="@+id/btn_save"
-            android:text="@string/save"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_size_20"
             android:layout_width="match_parent"
-            android:shadowRadius="50"
             android:layout_height="@dimen/widget_size_45"
             android:layout_marginStart="@dimen/widget_size_15"
             android:layout_marginTop="@dimen/widget_size_50"
             android:layout_marginEnd="@dimen/widget_size_15"
+            android:shadowRadius="50"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_20"
             app:layout_constraintTop_toBottomOf="@+id/et_des" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

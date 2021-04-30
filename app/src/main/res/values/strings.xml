@@ -41,4 +41,7 @@
     <string name="put_away">收起</string>
     <string name="interval_symbol">\u0020至\u0020</string>
     <string name="bill_spend">账单花费</string>
+    <string name="bill_spend_hint">填写花费金额</string>
+    <string name="bill_des_hint">填写花费说明(选填)</string>
+    <string name="input_bill_type_hint">填写账单类型</string>
 </resources>

@@ -6,14 +6,13 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.Gravity.CENTER
-import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import razerdp.basepopup.BasePopupWindow
 import ylc.love.wxj.mywife.R
-import ylc.love.wxj.mywife.databinding.BillTypeItemBinding
 import ylc.love.wxj.mywife.databinding.PopWindowAddBillBinding
 import ylc.love.wxj.mywife.expand.toast
+import ylc.love.wxj.mywife.model.AppDataBase
 import ylc.love.wxj.mywife.model.BillBean
 import ylc.love.wxj.mywife.model.BillTypeBean
 import ylc.love.wxj.mywife.utils.DateUtils
@@ -29,11 +28,17 @@ import java.util.regex.Pattern
 class AddBillPopWindow(context: Context) : BasePopupWindow(context) {
     private lateinit var bind: PopWindowAddBillBinding
     private var type: BillTypeBean = BillTypeBean("", -1)
+    private val tvList = mutableListOf<AppTextView>()
+    private val tealColor = ResUtil.getColor(context, R.color.teal_700)
+    private val transColor = ResUtil.getColor(context, R.color.transparent)
+    private val whiteColor = ResUtil.getColor(context, R.color.white)
 
     override fun onCreateContentView(): View {
         val view = createPopupById(R.layout.pop_window_add_bill)
         bind = DataBindingUtil.bind(view)!!
         bind.tvTime.text = DateUtils.getCurDateStr("yyyy-MM-dd")
+        setOutSideDismiss(false)
+        bind.ivCancel.setOnClickListener { dismiss() }
         return bind.root
     }
 
@@ -61,6 +66,7 @@ class AddBillPopWindow(context: Context) : BasePopupWindow(context) {
     }
 
     fun isRightNum(number: String): Boolean {
+        if (number.isEmpty()) return true
         val compile = Pattern.compile("^\\d+\\.?\\d{0,2}$")
         return compile.matcher(number).matches()
     }
@@ -69,34 +75,66 @@ class AddBillPopWindow(context: Context) : BasePopupWindow(context) {
         popupGravity = CENTER
         super.showPopupWindow()
         bind.etSpend.addTextChangedListener(watcher)
+        setTypeList()
     }
 
-    fun setTypeList(list: MutableList<BillTypeBean>) {
-        val tvList = mutableListOf<AppTextView>()
-        list.removeAt(0)
+    fun setTypeList() {
+        val list = AppDataBase.instance.billTypeBeanDao().selectAll()
         bind.btnSave.setOnClickListener { save() }
         bind.tvTime.setOnClickListener { selectTime() }
         bind.wordWrap.removeAllViews()
-        list.add(BillTypeBean("+", -1))
+        list.add(BillTypeBean(" + ", 0L,-1))
         val count = list.size
+        val textSize = ResUtil.getDimen(context, R.dimen.font_size_18)
+        val strokeWidth = ResUtil.getDimen(context, R.dimen.widget_size_1).toInt()
+        val radius = ResUtil.getDimen(context, R.dimen.widget_size_10).toInt()
         var tv: AppTextView
         for (index in 0 until count) {
-            tv = LayoutInflater.from(context).inflate(R.layout.bill_type_item,null) as AppTextView
+            tv = AppTextView(context)
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
+            tv.setTextColor(tealColor)
+            tv.strokeColor = tealColor
+            tv.strokeWidth = strokeWidth
+            tv.radius = radius
             tv.text = list[index].type
             tv.setOnClickListener {
-                selectType(list[index])
-                for (i in 0 until tvList.size){
-
-                }
+                selectType(it as AppTextView, list[index])
             }
+            tv.setBgSelector()
             tvList.add(tv)
             bind.wordWrap.addView(tv)
         }
     }
 
 
-    private fun selectType(type:BillTypeBean){
-        this.type = type
+    private fun selectType(tv: AppTextView, type: BillTypeBean) {
+        if (type.id == -1) {
+            AddBillTypePopWindow(context).showPopupWindow()
+            return
+        }
+        tv.isSelected = !tv.isSelected
+        if (tv.isSelected) {
+            this.type = type
+            this.type.lastUse = DateUtils.curTime
+            tv.bgColor = tealColor
+            tv.setTextColor(whiteColor)
+        } else {
+            this.type = BillTypeBean("", -0L,-1)
+            tv.bgColor = transColor
+            tv.setTextColor(tealColor)
+        }
+        tv.setBgSelector()
+
+        val count = tvList.size
+        for (i in 0 until count) {
+            val cTv = tvList[i]
+            if (cTv != tv && cTv.isSelected) {
+                cTv.isSelected = false
+                cTv.bgColor = transColor
+                cTv.setTextColor(tealColor)
+                cTv.setBgSelector()
+            }
+        }
     }
 
     private fun selectTime() {
@@ -117,7 +155,7 @@ class AddBillPopWindow(context: Context) : BasePopupWindow(context) {
     var listener: SaveListener? = null
 
     interface SaveListener {
-        fun onClick(type: BillBean)
+        fun onClick(type: BillTypeBean, bill: BillBean)
     }
 
     private fun save() {
@@ -125,7 +163,7 @@ class AddBillPopWindow(context: Context) : BasePopupWindow(context) {
             "请选择账单类型".toast()
             return
         }
-        if (bind.etSpend.text == null) {
+        if (bind.etSpend.text.isNullOrEmpty()) {
             "填写账单费用".toast()
             return
         }
@@ -138,6 +176,6 @@ class AddBillPopWindow(context: Context) : BasePopupWindow(context) {
             bind.etSpend.text.toString().toFloat(),
             bind.etDes.text.toString()
         )
-        listener?.onClick(bean)
+        listener?.onClick(this.type, bean)
     }
 }

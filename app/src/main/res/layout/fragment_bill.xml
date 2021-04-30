@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/color_333"
                     android:textSize="@dimen/font_size_16"
-                    android:text="@string/bill_type" />
+                    android:text=" 至 " />
 
                 <ylc.love.wxj.mywife.widget.AppTextView
                     android:id="@+id/tv_end_time"

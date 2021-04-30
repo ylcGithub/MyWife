@@ -11,6 +11,7 @@ import ylc.love.wxj.mywife.model.BillTypeBean
 import ylc.love.wxj.mywife.model.DateInterval
 import ylc.love.wxj.mywife.utils.DateUtils
 import ylc.love.wxj.mywife.utils.LogUtil
+import java.util.*
 
 class BillViewModel : BaseViewModel() {
 
@@ -20,7 +21,7 @@ class BillViewModel : BaseViewModel() {
     private val _typeList = MutableLiveData<MutableList<BillTypeBean>>()
     val typeList: LiveData<MutableList<BillTypeBean>> = _typeList
 
-    val currTime:MutableLiveData<DateInterval> = MutableLiveData(DateInterval(0L,0L))
+    val currTime:MutableLiveData<DateInterval> = MutableLiveData(DateInterval(DateUtils.getCurrMonthStartTime(),DateUtils.curTime))
     val currType:MutableLiveData<Int> = MutableLiveData(0)
 
     fun queryBills() = runOnThread(work = {

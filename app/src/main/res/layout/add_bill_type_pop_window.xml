@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_265"
+        android:layout_marginStart="@dimen/widget_size_40"
+        android:layout_marginEnd="@dimen/widget_size_40"
+        android:background="@color/white">
+
+        <ylc.love.wxj.mywife.widget.AppImageView
+            android:id="@+id/iv_cancel"
+            android:layout_width="@dimen/widget_size_45"
+            android:layout_height="@dimen/widget_size_45"
+            android:padding="@dimen/widget_size_5"
+            app:image_pressed_color="@color/color_999"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icon_clear" />
+
+        <ylc.love.wxj.mywife.widget.AppEditText
+            android:id="@+id/et_bill_type"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_45"
+            android:layout_marginHorizontal="@dimen/widget_size_15"
+            android:layout_marginTop="@dimen/widget_size_15"
+            android:gravity="center_vertical"
+            android:hint="@string/input_bill_type_hint"
+            android:textColor="@color/teal_700"
+            android:textColorHint="@color/color_999"
+            android:textSize="@dimen/font_size_18"
+            app:layout_constraintBottom_toTopOf="@+id/btn_save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ylc.love.wxj.mywife.widget.AppButton
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_45"
+            android:layout_marginHorizontal="@dimen/widget_size_20"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_18"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_bill_type" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

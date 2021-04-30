@@ -13,6 +13,7 @@ import ylc.love.wxj.mywife.base.BaseViewHolder
 import ylc.love.wxj.mywife.databinding.BillListItemBinding
 import ylc.love.wxj.mywife.databinding.BillTypeItemBinding
 import ylc.love.wxj.mywife.databinding.FragmentBillBinding
+import ylc.love.wxj.mywife.expand.toast
 import ylc.love.wxj.mywife.model.*
 import ylc.love.wxj.mywife.utils.DateUtils
 import ylc.love.wxj.mywife.utils.ResUtil
@@ -80,11 +81,10 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
         fun addNewBill(){
             AddBillPopWindow(mContext).also {
                 it.listener = object :AddBillPopWindow.SaveListener{
-                    override fun onClick(type: BillBean) {
-                        mViewModel.addBean()
+                    override fun onClick(type: BillTypeBean,bill:BillBean) {
+                        "保存账单$bill".toast()
                     }
                 }
-                it.setTypeList(mViewModel.typeList.value!!)
             }.showPopupWindow()
         }
     }
