@@ -6,11 +6,13 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import razerdp.basepopup.BasePopupWindow
 import ylc.love.wxj.mywife.R
+import ylc.love.wxj.mywife.config.ParamsKey
 import ylc.love.wxj.mywife.databinding.AddBillTypePopWindowBinding
 import ylc.love.wxj.mywife.expand.toast
 import ylc.love.wxj.mywife.model.AppDataBase
 import ylc.love.wxj.mywife.model.BillTypeBean
 import ylc.love.wxj.mywife.utils.DateUtils
+import ylc.love.wxj.mywife.utils.LiveDataBus
 
 /**
  *@author YLC-D
@@ -51,6 +53,8 @@ class AddBillTypePopWindow(context: Context) : BasePopupWindow(context) {
 
         val type = BillTypeBean(newType,DateUtils.curTime)
         //保存该账单类型
+        LiveDataBus.send(ParamsKey.SAVE_BILL_TYPE,type)
+        dismiss()
     }
 
 }

@@ -1,7 +1,8 @@
 package ylc.love.wxj.mywife.ui.bill
 
 import android.annotation.SuppressLint
-import android.app.DatePickerDialog
+import android.app.AlertDialog
+import android.app.Dialog
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,17 +11,17 @@ import ylc.love.wxj.mywife.R
 import ylc.love.wxj.mywife.base.BaseFragment
 import ylc.love.wxj.mywife.base.BaseOneLayoutAdapter
 import ylc.love.wxj.mywife.base.BaseViewHolder
+import ylc.love.wxj.mywife.config.ParamsKey
 import ylc.love.wxj.mywife.databinding.BillListItemBinding
 import ylc.love.wxj.mywife.databinding.BillTypeItemBinding
 import ylc.love.wxj.mywife.databinding.FragmentBillBinding
-import ylc.love.wxj.mywife.expand.toast
 import ylc.love.wxj.mywife.model.*
 import ylc.love.wxj.mywife.utils.DateUtils
+import ylc.love.wxj.mywife.utils.LiveDataBus
 import ylc.love.wxj.mywife.utils.ResUtil
 import ylc.love.wxj.mywife.widget.AddBillPopWindow
 import ylc.love.wxj.mywife.widget.AppTextView
 import ylc.love.wxj.mywife.widget.CustomItemDecoration
-import java.util.*
 
 class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
     override fun getLayoutId(): Int = R.layout.fragment_bill
@@ -49,6 +50,7 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
         })
         mViewModel.typeList.observe(this,{
             typeAdapter.updateList(it,true)
+            addBillPopWindow?.setTypeList()
         })
         rcv_type.adapter = typeAdapter
         rcv_type.layoutManager = LinearLayoutManager(mContext).also {it.orientation = RecyclerView.HORIZONTAL }
@@ -61,8 +63,16 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
         }
 
         mViewModel.queryBillTypes()
+
+        LiveDataBus.with(ParamsKey.SAVE_BILL)?.observe(this,{
+            mViewModel.addBean(it as BillBean)
+        })
+        LiveDataBus.with(ParamsKey.SAVE_BILL_TYPE)?.observe(this,{
+            mViewModel.addBeanType(it as BillTypeBean)
+        })
     }
 
+    private var addBillPopWindow:AddBillPopWindow? = null
     inner class ClickProxy{
         fun unfoldPutAway(v:View){
            v as AppTextView
@@ -79,13 +89,10 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
         }
 
         fun addNewBill(){
-            AddBillPopWindow(mContext).also {
-                it.listener = object :AddBillPopWindow.SaveListener{
-                    override fun onClick(type: BillTypeBean,bill:BillBean) {
-                        "保存账单$bill".toast()
-                    }
-                }
-            }.showPopupWindow()
+            if(addBillPopWindow == null){
+                addBillPopWindow = AddBillPopWindow(mContext)
+            }
+            addBillPopWindow?.showPopupWindow()
         }
     }
 
@@ -106,7 +113,23 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
             item.des?.let {
                 bind.tvDes.text = it
             }
+            bind.item.setOnLongClickListener {
+                showDeleteBillPop(item)
+                true
+            }
         }
+    }
+
+    private fun showDeleteBillPop(item:BillBean){
+        AlertDialog.Builder(mContext).setTitle("删除提示").setMessage("是否删除该账单？").setPositiveButton(
+            "删除"
+        ) { _, _ ->
+            run {
+                mAdapter.deleteItem(item)
+                val dao = AppDataBase.instance.billBeanDao()
+                dao.delete(item)
+            }
+        }.setNegativeButton("取消"){_,_ -> }.show()
     }
 
     private val typeAdapter = object : BaseOneLayoutAdapter<BillTypeBean,BillTypeItemBinding>(R.layout.bill_type_item){
@@ -120,6 +143,7 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
             bind.tvType.setOnClickListener {
                 mViewModel.currType.value = item.id
             }
+
         }
     }
 }

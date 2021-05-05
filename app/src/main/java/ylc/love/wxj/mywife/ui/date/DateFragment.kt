@@ -1,6 +1,7 @@
 package ylc.love.wxj.mywife.ui.date
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Build
 import android.text.TextUtils
 import androidx.annotation.RequiresApi
@@ -73,7 +74,6 @@ class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
                     }
                 }
                 bind.tvDes.setOnLongClickListener {
-                    deleteItem(holder.adapterPosition)
                     showDeleteWindow(item)
                     true
                 }
@@ -81,8 +81,15 @@ class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
         }
 
     private fun showDeleteWindow(item:DateBean) {
-        val eventBeanDao = AppDataBase.instance.eventBeanDao()
-        eventBeanDao.delete(item)
+        AlertDialog.Builder(mContext).setTitle("删除提示").setMessage("是否删除该事件？").setPositiveButton(
+            "删除"
+        ) { _, _ ->
+            run {
+                listAdapter.deleteItem(item)
+                val dao = AppDataBase.instance.eventBeanDao()
+                dao.delete(item)
+            }
+        }.setNegativeButton("取消"){_,_ -> }.show()
     }
 
 }

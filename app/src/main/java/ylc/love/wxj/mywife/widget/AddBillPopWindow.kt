@@ -10,12 +10,14 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import razerdp.basepopup.BasePopupWindow
 import ylc.love.wxj.mywife.R
+import ylc.love.wxj.mywife.config.ParamsKey
 import ylc.love.wxj.mywife.databinding.PopWindowAddBillBinding
 import ylc.love.wxj.mywife.expand.toast
 import ylc.love.wxj.mywife.model.AppDataBase
 import ylc.love.wxj.mywife.model.BillBean
 import ylc.love.wxj.mywife.model.BillTypeBean
 import ylc.love.wxj.mywife.utils.DateUtils
+import ylc.love.wxj.mywife.utils.LiveDataBus
 import ylc.love.wxj.mywife.utils.ResUtil
 import java.util.*
 import java.util.regex.Pattern
@@ -27,7 +29,7 @@ import java.util.regex.Pattern
  */
 class AddBillPopWindow(context: Context) : BasePopupWindow(context) {
     private lateinit var bind: PopWindowAddBillBinding
-    private var type: BillTypeBean = BillTypeBean("", -1)
+    private var type: BillTypeBean = BillTypeBean("", -1,-1)
     private val tvList = mutableListOf<AppTextView>()
     private val tealColor = ResUtil.getColor(context, R.color.teal_700)
     private val transColor = ResUtil.getColor(context, R.color.transparent)
@@ -73,9 +75,10 @@ class AddBillPopWindow(context: Context) : BasePopupWindow(context) {
 
     override fun showPopupWindow() {
         popupGravity = CENTER
-        super.showPopupWindow()
         bind.etSpend.addTextChangedListener(watcher)
+        this.type = BillTypeBean("", -1,-1)
         setTypeList()
+        super.showPopupWindow()
     }
 
     fun setTypeList() {
@@ -99,6 +102,9 @@ class AddBillPopWindow(context: Context) : BasePopupWindow(context) {
             tv.text = list[index].type
             tv.setOnClickListener {
                 selectType(it as AppTextView, list[index])
+            }
+            if(index == 0){
+                selectType(tv, list[index])
             }
             tv.setBgSelector()
             tvList.add(tv)
@@ -152,12 +158,6 @@ class AddBillPopWindow(context: Context) : BasePopupWindow(context) {
         dialog.show()
     }
 
-    var listener: SaveListener? = null
-
-    interface SaveListener {
-        fun onClick(type: BillTypeBean, bill: BillBean)
-    }
-
     private fun save() {
         if (type.id == -1) {
             "请选择账单类型".toast()
@@ -176,6 +176,6 @@ class AddBillPopWindow(context: Context) : BasePopupWindow(context) {
             bind.etSpend.text.toString().toFloat(),
             bind.etDes.text.toString()
         )
-        listener?.onClick(this.type, bean)
+        LiveDataBus.send(ParamsKey.SAVE_BILL,bean)
     }
 }

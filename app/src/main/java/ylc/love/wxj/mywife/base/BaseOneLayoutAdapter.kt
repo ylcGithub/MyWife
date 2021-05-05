@@ -94,4 +94,10 @@ abstract class BaseOneLayoutAdapter<E, VB : ViewDataBinding>(@LayoutRes val layo
         notifyItemRemoved(position)
         notifyDataSetChanged()
     }
+
+    fun deleteItem(item:E){
+        dataList.remove(item)
+        notifyItemRemoved(dataList.indexOf(item))
+        notifyDataSetChanged()
+    }
 }
